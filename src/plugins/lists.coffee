@@ -21,7 +21,7 @@
           editable: @options.editable
           label: label
           command: "insert#{type}List"
-          icon: "icon-list-#{label.toLowerCase()}"
+          icon: "glyphicon-list-#{label.toLowerCase()}"
           cssClass: @options.buttonCssClass
         buttonset.append buttonElement
 
@@ -29,6 +29,4 @@
       buttonize "Unordered", "UL" if @options.lists.unordered
 
       buttonset.hallobuttonset()
-      toolbar.append buttonset
-
-)(jQuery)
+      toolbar.append buttonset)(jQuery)

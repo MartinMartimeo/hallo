@@ -64,15 +64,15 @@
         dialog_html += "<div id='hallo_img_file_select_ui'></div>"
 
       @options.dialog = jQuery("<div>").
-        attr('id', "#{@options.uuid}-insert-image-dialog").
-        html(dialog_html)
+      attr('id', "#{@options.uuid}-insert-image-dialog").
+      html(dialog_html)
 
       $buttonset = jQuery("<span>").addClass @widgetName
 
       $buttonHolder = jQuery '<span>'
       $buttonHolder.hallobutton
         label: @texts.title_insert
-        icon: 'icon-picture'
+        icon: 'glyphicon-picture'
         editable: @options.editable
         command: null
         queryState: false
@@ -105,7 +105,7 @@
       @options.editable.element.on 'halloselected', (event, data) ->
         toolbar_option = widget.options.editable.options.toolbar
         if toolbar_option == "halloToolbarContextual" and
-         jQuery(data.originalEvent.target).is('img')
+        jQuery(data.originalEvent.target).is('img')
           $toolbar.hide()
           false
 
@@ -158,11 +158,11 @@
         jQuery('label', @button).removeClass 'ui-state-active'
         scrollbar_pos = jQuery(document).scrollTop()
         @options.editable.element.focus()
-        jQuery(document).scrollTop(scrollbar_pos)  # restore scrollbar pos
+        jQuery(document).scrollTop(scrollbar_pos) # restore scrollbar pos
         @options.editable.keepActivated false
 
       if @options.insert_file_dialog_ui_url and not
-       @dialog_image_selection_ui_loaded
+      @dialog_image_selection_ui_loaded
 
         @options.dialog.on 'click', ".reload_link", ->
           widget._load_dialog_image_selection_ui()
@@ -206,12 +206,12 @@
 
           t = "<div id='hallo_img_file_select_title'>#{file_select_title}</div>"
           widget.options.dialog.children('#hallo_img_file_select_ui').
-           html( t + data)
+          html(t + data)
 
           widget.dialog_image_selection_ui_loaded = true
         beforeSend: ->
           widget.options.dialog.children('#hallo_img_file_select_ui').
-            html('<div class="hallo_insert_file_loader"></div>')
+          html('<div class="hallo_insert_file_loader"></div>')
 
 
     _load_dialog_image_properties_ui: ->
@@ -222,37 +222,37 @@
 
         width = if @$image.is('[width]') then @$image.attr('width') else ''
         height = if @$image.is('[height]') then @$image.attr('height') else ''
-        html = @_property_input_html( 'source',
-          @$image.attr('src'), { label: @texts.source } ) +
-        @_property_input_html( 'alt',
-          @$image.attr('alt') || '', { label: @texts.alt } ) +
+        html = @_property_input_html('source',
+          @$image.attr('src'), { label: @texts.source }) +
+        @_property_input_html('alt',
+          @$image.attr('alt') || '', { label: @texts.alt }) +
         @_property_row_html(
           @_property_input_html('width',
             width, { label: @texts.width, row: false }) +
           @_property_input_html('height',
             height, { label: @texts.height, row: false })) +
-        @_property_input_html( 'padding',
-          @$image.css('padding'), { label: @texts.padding } ) +
+        @_property_input_html('padding',
+          @$image.css('padding'), { label: @texts.padding }) +
         @_property_row_html(
-          @_property_cb_html( 'float_left',
+          @_property_cb_html('float_left',
             @$image.css('float') == 'left',
-            { label: @texts.float_left, row: false } ) +
-          @_property_cb_html( 'float_right',
+          { label: @texts.float_left, row: false }) +
+          @_property_cb_html('float_right',
             @$image.css('float') == 'right',
-            { label: @texts.float_right, row: false } ) +
-          @_property_cb_html( 'unfloat',
+          { label: @texts.float_right, row: false }) +
+          @_property_cb_html('unfloat',
             @$image.css('float') == 'none',
-            { label: @texts.float_none, row: false } ),
-        @texts[float])
+          { label: @texts.float_none, row: false }),
+          @texts[float])
         $img_properties.html html
         $img_properties.show()
       else
         unless @options.insert_file_dialog_ui_url
           $img_properties.html @_property_input_html 'source',
-                                                     '',
-                                                     {
-                                                       label: @texts.source
-                                                     }
+            '',
+          {
+            label: @texts.source
+          }
           $img_properties.show()
 
       if @$image
@@ -283,25 +283,25 @@
           return false unless this.checked
           widget.$image.css 'float', 'left'
           jQuery('#hallo_img_properties #hallo_img_float_right').
-            removeAttr('checked')
+          removeAttr('checked')
           jQuery('#hallo_img_properties #hallo_img_unfloat').
-            removeAttr('checked')
+          removeAttr('checked')
 
         jQuery('#hallo_img_properties #hallo_img_float_right').click ->
           return false unless this.checked
           widget.$image.css 'float', 'right'
           jQuery('#hallo_img_properties #hallo_img_unfloat').
-            removeAttr('checked')
+          removeAttr('checked')
           jQuery('#hallo_img_properties #hallo_img_float_left').
-            removeAttr('checked')
+          removeAttr('checked')
 
         jQuery('#hallo_img_properties #hallo_img_unfloat').click ->
           return false unless this.checked
           widget.$image.css 'float', 'none'
           jQuery('#hallo_img_properties #hallo_img_float_right').
-            removeAttr('checked')
+          removeAttr('checked')
           jQuery('#hallo_img_properties #hallo_img_float_left').
-            removeAttr('checked')
+          removeAttr('checked')
 
       else
         unless @options.insert_file_dialog_ui_url
@@ -336,5 +336,4 @@
     _property_cb_html: (id, checked, options = {}) ->
       checked_attr = if checked then 'checked=checked' else ''
       cb = "<input type='checkbox' id='hallo_img_#{id}' #{ checked_attr }'>"
-      @_property_html cb, options
-) jQuery
+      @_property_html cb, options) jQuery

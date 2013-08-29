@@ -17,10 +17,10 @@
       cssClass: null
 
     _create: ->
-      # By default the icon is icon-command, but this doesn't
+      # By default the icon is glyphicon-command, but this doesn't
       # always match with
       # <http://fortawesome.github.com/Font-Awesome/#base-icons>
-      @options.icon ?= "icon-#{@options.label.toLowerCase()}"
+      @options.icon ?= "glyphicon-#{@options.label.toLowerCase()}"
 
       id = "#{@options.uuid}-#{@options.label}"
       opts = @options
@@ -31,7 +31,7 @@
       @button.data 'hallo-command', @options.command
       if @options.commandValue
         @button.data 'hallo-command-value', @options.commandValue
-        
+
       hoverclass = 'ui-state-hover'
       @button.on 'mouseenter', (event) =>
         if @isEnabled()
@@ -49,7 +49,7 @@
           try
             if @options.commandValue
               value = document.queryCommandValue @options.command
-              compared = value.match(new RegExp(@options.commandValue,"i"))
+              compared = value.match(new RegExp(@options.commandValue, "i"))
               @checked(if compared then true else false)
             else
               @checked document.queryCommandState @options.command
@@ -107,11 +107,11 @@
         "#{command}_button"
       ]
       jQuery "<button id=\"#{id}\"
-        class=\"#{classes.join(' ')}\" title=\"#{label}\">
-          <span class=\"ui-button-text\">
-            <i class=\"#{icon}\"></i>
-          </span>
-        </button>"
+              class=\"#{classes.join(' ')}\" title=\"#{label}\">
+                <span class=\"ui-button-text\">
+                  <i class=\"glyphicon #{icon}\"></i>
+                </span>
+              </button>"
 
 
   jQuery.widget 'IKS.hallobuttonset',
@@ -131,5 +131,4 @@
         @buttons.filter(':last').addClass 'ui-corner-left'
       else
         @buttons.filter(':first').addClass 'ui-corner-left'
-        @buttons.filter(':last').addClass 'ui-corner-right'
-)(jQuery)
+        @buttons.filter(':last').addClass 'ui-corner-right')(jQuery)

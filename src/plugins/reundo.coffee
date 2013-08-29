@@ -17,7 +17,7 @@
           uuid: @options.uuid
           editable: @options.editable
           label: label
-          icon: if cmd is 'undo' then 'icon-undo' else 'icon-repeat'
+          icon: if cmd is 'undo' then 'glyphicon-undo' else 'glyphicon-repeat'
           command: cmd
           queryState: false
           cssClass: @options.buttonCssClass
@@ -26,5 +26,4 @@
       buttonize "redo", "Redo"
 
       buttonset.hallobuttonset()
-      toolbar.append buttonset
-)(jQuery)
+      toolbar.append buttonset)(jQuery)

@@ -42,7 +42,7 @@
       $buttonHolder = jQuery '<span>'
       $buttonHolder.hallobutton
         label: @texts.title
-        icon: 'icon-list-alt'
+        icon: 'glyphicon-list-alt'
         editable: @options.editable
         command: null
         queryState: false
@@ -68,7 +68,6 @@
 
 
     _openDialog: ->
-
       widget = this
 
       $editableEl = jQuery @options.editable.element
@@ -99,5 +98,4 @@
         false
 
     _closeDialog: ->
-      @options.dialog.dialog("close")
-) jQuery
+      @options.dialog.dialog("close")) jQuery

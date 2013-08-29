@@ -4,7 +4,7 @@
     z = new VIE
     z.use new z.StanbolService
       proxyDisabled: true
-      url : 'http://dev.iks-project.eu:8081',
+      url: 'http://dev.iks-project.eu:8081',
 
   jQuery.widget 'IKS.halloannotate',
     options:
@@ -13,9 +13,9 @@
       toolbar: null
       uuid: ''
       select: ->
-      decline: ->
-      remove: ->
-      buttonCssClass: null
+        decline: ->
+          remove: ->
+            buttonCssClass: null
 
     _create: ->
       widget = @
@@ -41,18 +41,18 @@
       buttonHolder = jQuery "<span class=\"#{@widgetName}\"></span>"
       @button = buttonHolder.hallobutton
         label: 'Annotate'
-        icon: 'icon-tags'
+        icon: 'glyphicon-tags'
         editable: @options.editable
         command: null
         uuid: @options.uuid
         cssClass: @options.buttonCssClass
         queryState: false
- 
+
       buttonHolder.on 'change', (event) =>
         return if @state is "pending"
         return @turnOn() if @state is "off"
         @turnOff()
-            
+
       buttonHolder.buttonset()
 
       toolbar.append @button
@@ -73,11 +73,11 @@
         success: @options.success
         error: @options.error
       .on 'annotateselect', (event, data) ->
-        widget.options.editable.setModified()
-        # console.info @, arguments
+          widget.options.editable.setModified()
+      # console.info @, arguments
       .on 'annotateremove', ->
-        jQuery.noop()
-        # console.info @, arguments
+          jQuery.noop()
+  # console.info @, arguments
 
     turnPending: ->
       @state = 'pending'
@@ -102,5 +102,4 @@
       return unless @button
       @button.attr 'checked', false
       @button.find("label").removeClass "ui-state-clicked"
-      @button.button 'refresh'
-)(jQuery)
+      @button.button 'refresh')(jQuery)

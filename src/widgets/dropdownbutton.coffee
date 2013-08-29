@@ -14,7 +14,7 @@
       cssClass: null
 
     _create: ->
-      @options.icon ?= "icon-#{@options.label.toLowerCase()}"
+      @options.icon ?= "glyphicon-#{@options.label.toLowerCase()}"
 
     _init: ->
       target = jQuery @options.target
@@ -43,7 +43,7 @@
       @_updateTargetPosition()
       target.addClass 'open'
       target.show()
-    
+
     _hideTarget: ->
       target = jQuery @options.target
       target.removeClass 'open'
@@ -66,10 +66,8 @@
         'ui-button-text-only'
       ]
       buttonEl = jQuery "<button id=\"#{id}\"
-       class=\"#{classes.join(' ')}\" title=\"#{@options.label}\">
-       <span class=\"ui-button-text\"><i class=\"#{@options.icon}\"></i></span>
-       </button>"
+             class=\"#{classes.join(' ')}\" title=\"#{@options.label}\">
+             <span class=\"ui-button-text\"><i class=\"#{@options.icon}\"></i></span>
+             </button>"
       buttonEl.addClass @options.cssClass if @options.cssClass
-      buttonEl
-
-)(jQuery)
+      buttonEl)(jQuery)

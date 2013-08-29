@@ -17,30 +17,30 @@
       editable: null
       toolbar: null
       uuid: ""
-      # number of thumbnails for paging in search results
+    # number of thumbnails for paging in search results
       limit: 8
-      # this function is responsible to fetch search results
-      # query: terms to search
-      # limit: how many results to show at max
-      # offset: offset for the returned result
-      # successCallback: function that will be called with the response
-      # json object
-      # the object has fields offset (the requested offset), total (total
-      # number of results) and assets (list of url and alt text for each image)
+    # this function is responsible to fetch search results
+    # query: terms to search
+    # limit: how many results to show at max
+    # offset: offset for the returned result
+    # successCallback: function that will be called with the response
+    # json object
+    # the object has fields offset (the requested offset), total (total
+    # number of results) and assets (list of url and alt text for each image)
       search: null
       searchUrl: null
-      # this function is responsible to fetch suggestions for images to insert
-      # this could for example be based on tags of the entity or some semantic
-      # enhancement, ...
-      #
-      # tags: tag information - TODO: do not expect that here but get it from
-      # context
-      # limit: how many results to show at max
-      # offset: offset for the returned result
-      # successCallback: function that will be called with the response json
-      # object
-      # the object has fields offset (the requested offset), total (total
-      # number of results) and assets (list of url and alt text for each image)
+    # this function is responsible to fetch suggestions for images to insert
+    # this could for example be based on tags of the entity or some semantic
+    # enhancement, ...
+    #
+    # tags: tag information - TODO: do not expect that here but get it from
+    # context
+    # limit: how many results to show at max
+    # offset: offset for the returned result
+    # successCallback: function that will be called with the response json
+    # object
+    # the object has fields offset (the requested offset), total (total
+    # number of results) and assets (list of url and alt text for each image)
       suggestions: null
       loaded: null
       upload: null
@@ -56,9 +56,9 @@
         dialogClass: 'halloimage-dialog'
       dialog: null
       buttonCssClass: null
-      # Additional configuration options that can be used for
-      # image suggestions. The Entity is used to get tags
-      # and VIE to load additional data on them.
+    # Additional configuration options that can be used for
+    # image suggestions. The Entity is used to get tags
+    # and VIE to load additional data on them.
       entity: null
       vie: null
       dbPediaUrl: "http://dev.iks-project.eu/stanbolfull"
@@ -70,14 +70,14 @@
       widget = this
       dialogId = "#{@options.uuid}-image-dialog"
       @options.dialog = jQuery "<div id=\"#{dialogId}\">
-        <div class=\"nav\">
-          <ul class=\"tabs\">
-          </ul>
-          <div id=\"#{@options.uuid}-tab-activeIndicator\"
-            class=\"tab-activeIndicator\" />
-        </div>
-        <div class=\"dialogcontent\">
-        </div>"
+              <div class=\"nav\">
+                <ul class=\"tabs\">
+                </ul>
+                <div id=\"#{@options.uuid}-tab-activeIndicator\"
+                  class=\"tab-activeIndicator\" />
+              </div>
+              <div class=\"dialogcontent\">
+              </div>"
 
       tabs = jQuery '.tabs', @options.dialog
       tabContent = jQuery '.dialogcontent', @options.dialog
@@ -104,7 +104,7 @@
       buttonHolder = jQuery '<span></span>'
       buttonHolder.hallobutton
         label: 'Images'
-        icon: 'icon-picture'
+        icon: 'glyphicon-picture'
         editable: @options.editable
         command: null
         queryState: false
@@ -140,7 +140,7 @@
         jQuery(".#{widget.widgetName}-tab").hide()
         id = jQuery(this).attr 'id'
         jQuery("##{id}-content").show()
-        left = jQuery(this).position().left + (jQuery(this).width()/2)
+        left = jQuery(this).position().left + (jQuery(this).width() / 2)
         jQuery("##{widget.options.uuid}-tab-activeIndicator").css
           "margin-left": left
       # Activate first tab
@@ -155,7 +155,7 @@
             size = jQuery("#" + @id).width()
             if size <= 20
               jQuery("#" + @id).parent("li").remove()
-        , 15000  # cleanup after 15 sec
+        , 15000 # cleanup after 15 sec
 
       suggestionSelector = "##{@options.uuid}-tab-suggestions-content"
       getActive = ->
@@ -174,10 +174,10 @@
       xposition = editableEl.offset().left + editableEl.outerWidth() - 3
       # 3 is the border width of the contenteditable border
       yposition = toolbarEl.offset().top + toolbarEl.outerHeight() + 29
-      yposition -=  jQuery(document).scrollTop()
+      yposition -= jQuery(document).scrollTop()
       @options.dialog.dialog("option", "position", [xposition, yposition])
       # do @_getSuggestions
- 
+
       cleanUp()
       widget.options.loaded = 1
 
@@ -194,11 +194,11 @@
 
     _addGuiTabSuggestions: (tabs, element) ->
       tabs.append jQuery "<li id=\"#{@options.uuid}-tab-suggestions\"
-        class=\"#{@widgetName}-tabselector #{@widgetName}-tab-suggestions\">
-          <span>Suggestions</span>
-        </li>"
+              class=\"#{@widgetName}-tabselector #{@widgetName}-tab-suggestions\">
+                <span>Suggestions</span>
+              </li>"
       tab = jQuery "<div id=\"#{@options.uuid}-tab-suggestions-content\"
-        class=\"#{@widgetName}-tab tab-suggestions\"></div>"
+              class=\"#{@widgetName}-tab tab-suggestions\"></div>"
       element.append tab
 
       tab.halloimagesuggestions
@@ -211,12 +211,12 @@
       dialogId = "#{@options.uuid}-image-dialog"
 
       tabs.append jQuery "<li id=\"#{@options.uuid}-tab-search\"
-        class=\"#{@widgetName}-tabselector #{@widgetName}-tab-search\">
-          <span>Search</span>
-        </li>"
+              class=\"#{@widgetName}-tabselector #{@widgetName}-tab-search\">
+                <span>Search</span>
+              </li>"
 
       tab = jQuery "<div id=\"#{@options.uuid}-tab-search-content\"
-        class=\"#{widget.widgetName}-tab tab-search\"></div>"
+              class=\"#{widget.widgetName}-tab tab-search\"></div>"
       element.append tab
 
       tab.halloimagesearch
@@ -229,11 +229,11 @@
 
     _addGuiTabUpload: (tabs, element) ->
       tabs.append jQuery "<li id=\"#{@options.uuid}-tab-upload\"
-        class=\"#{@widgetName}-tabselector #{@widgetName}-tab-upload\">
-          <span>Upload</span>
-        </li>"
+              class=\"#{@widgetName}-tabselector #{@widgetName}-tab-upload\">
+                <span>Upload</span>
+              </li>"
       tab = jQuery "<div id=\"#{@options.uuid}-tab-upload-content\"
-        class=\"#{@widgetName}-tab tab-upload\"></div>"
+              class=\"#{@widgetName}-tab tab-upload\"></div>"
       element.append tab
 
       tab.halloimageupload
@@ -241,5 +241,4 @@
         uploadCallback: @options.upload
         uploadUrl: @options.uploadUrl
         imageWidget: @
-        entity: @options.entity
- )(jQuery)
+        entity: @options.entity)(jQuery)

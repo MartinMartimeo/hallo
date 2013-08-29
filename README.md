@@ -146,8 +146,8 @@ A simplistic plugin would look like the following:
         uuid: @options.uuid
         editable: @options.editable
         label: 'Bold'
-        # Icons come from Font Awesome
-        icon: 'icon-bold'
+        # Icons come from Glyphicon
+        icon: 'glyphicon-bold'
         # Commands are used for execCommand and queryCommandState
         command: 'bold'
 

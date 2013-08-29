@@ -33,9 +33,9 @@
 
       addElement = (element) =>
         el = jQuery "<button class='blockselector'>
-          <#{element} class=\"menu-item\">#{element}</#{element}>
-        </button>"
-        
+                  <#{element} class=\"menu-item\">#{element}</#{element}>
+                </button>"
+
         if containingElement is element
           el.addClass 'selected'
 
@@ -51,14 +51,14 @@
             @options.editable.execute 'FormatBlock', "<#{tagName}>"
             return
           @options.editable.execute 'formatBlock', tagName
-          
+
         queryState = (event) =>
           block = document.queryCommandValue 'formatBlock'
           if block.toLowerCase() is element
             el.addClass 'selected'
             return
           el.removeClass 'selected'
-        
+
         events = 'keyup paste change mouseup'
         @options.editable.element.on events, queryState
 
@@ -79,9 +79,7 @@
         uuid: @options.uuid
         editable: @options.editable
         label: 'block'
-        icon: 'icon-text-height'
+        icon: 'glyphicon-text-height'
         target: target
         cssClass: @options.buttonCssClass
-      buttonElement
-
-)(jQuery)
+      buttonElement)(jQuery)

@@ -29,11 +29,11 @@
       butTitle = @options.dialogOpts.buttonTitle
       butUpdateTitle = @options.dialogOpts.buttonUpdateTitle
       dialog = jQuery "<div id=\"#{dialogId}\">
-        <form action=\"#\" method=\"post\" class=\"linkForm\">
-          <input class=\"url\" type=\"text\" name=\"url\"
-            value=\"#{@options.defaultUrl}\" />
-          <input type=\"submit\" id=\"addlinkButton\" value=\"#{butTitle}\"/>
-        </form></div>"
+              <form action=\"#\" method=\"post\" class=\"linkForm\">
+                <input class=\"url\" type=\"text\" name=\"url\"
+                  value=\"#{@options.defaultUrl}\" />
+                <input type=\"submit\" id=\"addlinkButton\" value=\"#{butTitle}\"/>
+              </form></div>"
       urlInput = jQuery('input[name=url]', dialog)
 
       isEmptyLink = (link) ->
@@ -77,7 +77,7 @@
         buttonHolder = jQuery '<span></span>'
         buttonHolder.hallobutton
           label: 'Link'
-          icon: 'icon-link'
+          icon: 'glyphicon-link'
           editable: @options.editable
           command: null
           queryState: false
@@ -125,5 +125,4 @@
       if (@options.link)
         toolbar.append buttonset
         buttonset.hallobuttonset()
-        dialog.dialog(@options.dialogOpts)
-)(jQuery)
+        dialog.dialog(@options.dialogOpts))(jQuery)
