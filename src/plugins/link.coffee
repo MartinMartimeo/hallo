@@ -125,4 +125,5 @@
       if (@options.link)
         toolbar.append buttonset
         buttonset.hallobuttonset()
-        dialog.dialog(@options.dialogOpts))(jQuery)
+        dialog.dialog(@options.dialogOpts)
+)(jQuery)

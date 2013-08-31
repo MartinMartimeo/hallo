@@ -70,4 +70,5 @@
              <span class=\"ui-button-text\"><i class=\"#{@options.icon}\"></i></span>
              </button>"
       buttonEl.addClass @options.cssClass if @options.cssClass
-      buttonEl)(jQuery)
+      buttonEl
+)(jQuery)

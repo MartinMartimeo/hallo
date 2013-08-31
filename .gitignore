@@ -1,7 +1,19 @@
 .idea
+
 docs/
-node_modules/
 docs_tmp/
 _site/
+
+# NPM
+node_modules/
+npm-debug.log
+
+# Generated files by IDEA Plugin for CoffeeScript
+src/**/*.js
+src/**/*.map
+test/**/*.js
+test/**/*.map
+Gruntfile.js
+Gruntfile.map
 
 .DS_Store

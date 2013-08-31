@@ -1,6 +1,11 @@
 Hallo Editor ChangeLog
 ======================
 
+## 1.0.3-martimeo1
+
+* Remove Font Awesome and use glyphicon halflings (depends on bootstrap v3)
+* Allow to specify which justify buttons are shown
+
 ## 1.0.3 (git master)
 
 * Ported the build environment to [Grunt](http://gruntjs.com)

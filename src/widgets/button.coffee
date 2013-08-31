@@ -18,8 +18,7 @@
 
     _create: ->
       # By default the icon is glyphicon-command, but this doesn't
-      # always match with
-      # <http://fortawesome.github.com/Font-Awesome/#base-icons>
+      # always match with the corect glyphicon identifier
       @options.icon ?= "glyphicon-#{@options.label.toLowerCase()}"
 
       id = "#{@options.uuid}-#{@options.label}"
@@ -131,4 +130,5 @@
         @buttons.filter(':last').addClass 'ui-corner-left'
       else
         @buttons.filter(':first').addClass 'ui-corner-left'
-        @buttons.filter(':last').addClass 'ui-corner-right')(jQuery)
+        @buttons.filter(':last').addClass 'ui-corner-right'
+)(jQuery)

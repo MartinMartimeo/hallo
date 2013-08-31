@@ -109,3 +109,18 @@ button.blockselector, button.blockselector:focus{
     border-radius: 10px;
     cursor: none;
 }
+
+.glyphicon-undo {
+  transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+}
+.glyphicon-undo:before {
+  content: "\e030";
+}
+.glyphicon-list-ol:before {
+  content: "\e032";
+}
+.glyphicon-list-ul:before {
+  content: "\e056";
+}
