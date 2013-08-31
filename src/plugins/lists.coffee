@@ -14,19 +14,22 @@
 
     populateToolbar: (toolbar) ->
       buttonset = jQuery "<span class=\"#{@widgetName}\"></span>"
-      buttonize = (type, label) =>
+      buttonize = (type, label, icon) =>
         buttonElement = jQuery '<span></span>'
         buttonElement.hallobutton
           uuid: @options.uuid
           editable: @options.editable
           label: label
           command: "insert#{type}List"
-          icon: "glyphicon-list-#{label.toLowerCase()}"
+          icon: icon
           cssClass: @options.buttonCssClass
         buttonset.append buttonElement
 
-      buttonize "Ordered", "OL" if @options.lists.ordered
-      buttonize "Unordered", "UL" if @options.lists.unordered
+      buttonize "Ordered", "ordered list", "glyphicon-list-ol" if @options.lists.ordered && @options.lists.unordered
+      buttonize "Ordered", "list", "glyphicon-list" if @options.lists.ordered && !@options.lists.unordered
+      buttonize "Unordered", "unordered list", "glyphicon-list-ul" if @options.lists.unordered && @options.lists.ordered
+      buttonize "Unordered", "list", "glyphicon-list" if @options.lists.unordered && !@options.lists.ordered
 
       buttonset.hallobuttonset()
-      toolbar.append buttonset)(jQuery)
+      toolbar.append buttonset
+)(jQuery)
