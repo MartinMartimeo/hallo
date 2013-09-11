@@ -102,4 +102,5 @@
       return unless @button
       @button.attr 'checked', false
       @button.find("label").removeClass "ui-state-clicked"
-      @button.button 'refresh')(jQuery)
+      @button.button 'refresh'
+)(jQuery)

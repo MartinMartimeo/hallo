@@ -98,4 +98,5 @@
         false
 
     _closeDialog: ->
-      @options.dialog.dialog("close")) jQuery
+      @options.dialog.dialog("close")
+) jQuery

@@ -26,4 +26,5 @@
       buttonize "redo", "Redo"
 
       buttonset.hallobuttonset()
-      toolbar.append buttonset)(jQuery)
+      toolbar.append buttonset
+)(jQuery)
