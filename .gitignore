@@ -16,4 +16,6 @@ test/**/*.map
 Gruntfile.js
 Gruntfile.map
 
+dist/hallo-min.js
+bower_components/
 .DS_Store
