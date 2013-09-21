@@ -9,7 +9,8 @@
 
     _create: ->
       this.element.on 'halloenabled', =>
-        do @buildIndicator
+        @toolbar = do @populateToolbar
+        @toolbar.buildIndicator.call(this)
 
     populateToolbar: ->
       buildIndicator: ->
@@ -19,8 +20,8 @@
 
         this.element.before editButton
 
-        @bindIndicator editButton
-        @setIndicatorPosition editButton
+        @toolbar.bindIndicator.call(this, editButton)
+        @toolbar.setIndicatorPosition.call(this, editButton)
 
       bindIndicator: (indicator) ->
         indicator.on 'click', =>
