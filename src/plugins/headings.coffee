@@ -21,6 +21,8 @@
           label: format
           editable: @options.editable
           command: command
+          icon: (if format == "p" then "" else "glyphicon-header")
+          iconText: (if format == "p" then "P" else format.slice(1,))
           commandValue: (if ie then "<#{format}>" else format)
           uuid: @options.uuid
           cssClass: @options.buttonCssClass

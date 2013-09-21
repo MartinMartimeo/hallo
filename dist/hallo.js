@@ -818,6 +818,8 @@
             label: format,
             editable: _this.options.editable,
             command: command,
+            icon: (format === "p" ? "" : "glyphicon-header"),
+            iconText: (format === "p" ? "P" : format.slice(1)),
             commandValue: (ie ? "<" + format + ">" : format),
             uuid: _this.options.uuid,
             cssClass: _this.options.buttonCssClass,
@@ -3015,6 +3017,7 @@
         uuid: '',
         label: null,
         icon: null,
+        iconText: '',
         editable: null,
         command: null,
         commandValue: null,
@@ -3030,7 +3033,7 @@
         id = "" + this.options.uuid + "-" + this.options.label;
         command = this.options.command;
         classes = ['btn', 'btn-default', "" + command + "_button"];
-        this.icon = this._createIcon(this.options.icon);
+        this.icon = this._createIcon(this.options.icon, this.options.iconText);
         this.element.append(this.icon);
         this.element.addClass(classes.join(' '));
         if (this.options.cssClass) {
@@ -3125,8 +3128,8 @@
         this.isChecked = checked;
         return this.refresh();
       },
-      _createIcon: function(icon) {
-        return jQuery("<i class=\"glyphicon " + icon + "\">");
+      _createIcon: function(icon, text) {
+        return jQuery("<i class=\"glyphicon " + icon + "\">" + text + "</i>");
       }
     });
     return jQuery.widget('IKS.hallobuttonset', {

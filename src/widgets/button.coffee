@@ -9,6 +9,7 @@
       uuid: ''
       label: null
       icon: null
+      iconText: ''
       editable: null
       command: null
       commandValue: null
@@ -28,7 +29,7 @@
         "#{command}_button"
       ]
 
-      @icon = @_createIcon @options.icon
+      @icon = @_createIcon @options.icon, @options.iconText
       @element.append @icon
 
       @element.addClass classes.join(' ')
@@ -103,8 +104,8 @@
       @isChecked = checked
       @refresh()
 
-    _createIcon: (icon) ->
-      jQuery "<i class=\"glyphicon #{icon}\">"
+    _createIcon: (icon, text) ->
+      jQuery "<i class=\"glyphicon #{icon}\">#{text}</i>"
 
 
   jQuery.widget 'IKS.hallobuttonset',
