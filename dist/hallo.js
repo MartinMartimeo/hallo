@@ -2612,6 +2612,62 @@
 
 (function() {
   (function(jQuery) {
+    return jQuery.widget("IKS.hallosave", {
+      options: {
+        editable: null,
+        toolbar: null,
+        uuid: '',
+        target: '',
+        method: 'POST',
+        icon: ["glyphicon-save", "glyphicon-saved"],
+        buttonCssClass: null
+      },
+      populateToolbar: function(toolbar) {
+        var button, buttonize, buttonset, widget,
+          _this = this;
+        widget = this;
+        buttonset = jQuery("<span class=\"" + this.widgetName + "\"></span>");
+        buttonize = function(cmd, label) {
+          var buttonElement;
+          buttonElement = jQuery('<button>');
+          buttonElement.hallobutton({
+            uuid: _this.options.uuid,
+            editable: _this.options.editable,
+            label: label,
+            icon: _this.options.icon[0],
+            command: null,
+            queryState: false,
+            cssClass: _this.options.buttonCssClass
+          });
+          buttonset.append(buttonElement);
+          _this.options.editable.element.on('hallomodified', function() {
+            return buttonElement.find(".glyphicon").removeClass(_this.options.icon[1]).addClass(_this.options.icon[0]);
+          });
+          return buttonElement;
+        };
+        button = buttonize("save", "Save");
+        button.on("click", function(event) {
+          var _base, _ref;
+          return jQuery.ajax({
+            url: (_ref = typeof (_base = widget.options).target === "function" ? _base.target(widget.options.editable) : void 0) != null ? _ref : widget.options.target,
+            type: widget.options.method,
+            data: widget.options.editable.element.html(),
+            success: function() {
+              widget.options.editable.element.removeClass('isModified');
+              return button.find(".glyphicon").removeClass(widget.options.icon[0]).addClass(widget.options.icon[1]);
+            }
+          });
+        });
+        buttonset.hallobuttonset();
+        return toolbar.append(buttonset);
+      }
+    });
+  })(jQuery);
+
+}).call(this);
+
+(function() {
+  (function(jQuery) {
     return jQuery.widget("IKS.hallotoolbarlinebreak", {
       options: {
         editable: null,
