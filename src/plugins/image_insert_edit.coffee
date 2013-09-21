@@ -336,4 +336,5 @@
     _property_cb_html: (id, checked, options = {}) ->
       checked_attr = if checked then 'checked=checked' else ''
       cb = "<input type='checkbox' id='hallo_img_#{id}' #{ checked_attr }'>"
-      @_property_html cb, options) jQuery
+      @_property_html cb, options
+) jQuery

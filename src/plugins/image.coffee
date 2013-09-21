@@ -241,4 +241,5 @@
         uploadCallback: @options.upload
         uploadUrl: @options.uploadUrl
         imageWidget: @
-        entity: @options.entity)(jQuery)
+        entity: @options.entity
+)(jQuery)
