@@ -39,7 +39,7 @@
       $buttonset = jQuery("<span>").addClass widget.widgetName
 
       id = "#{@options.uuid}-htmledit"
-      $buttonHolder = jQuery '<span>'
+      $buttonHolder = jQuery '<button>'
       $buttonHolder.hallobutton
         label: @texts.title
         icon: 'glyphicon-list-alt'
@@ -79,7 +79,7 @@
       @options.dialog.dialog("open")
 
       @options.dialog.on 'dialogclose', =>
-        jQuery('label', @button).removeClass 'ui-state-active'
+        jQuery('label', @button).removeClass 'active'
         @options.editable.element.focus()
         @options.editable.keepActivated false
 

@@ -253,7 +253,7 @@
       },
       _prepareToolbar: function() {
         var defaults, instance, plugin, populate, toolbarOptions;
-        this.toolbar = jQuery('<div class="hallotoolbar"></div>').hide();
+        this.toolbar = jQuery('<div class="hallotoolbar btn-toolbar"></div>').hide();
         if (this.options.toolbarCssClass) {
           this.toolbar.addClass(this.options.toolbarCssClass);
         }
@@ -495,7 +495,7 @@
       populateToolbar: function(toolbar) {
         var buttonHolder,
           _this = this;
-        buttonHolder = jQuery("<span class=\"" + this.widgetName + "\"></span>");
+        buttonHolder = jQuery("<button class=\"" + this.widgetName + "\">");
         this.button = buttonHolder.hallobutton({
           label: 'Annotate',
           icon: 'glyphicon-tags',
@@ -684,7 +684,7 @@
       },
       _prepareButton: function(target) {
         var buttonElement;
-        buttonElement = jQuery('<span></span>');
+        buttonElement = jQuery('<button>');
         buttonElement.hallodropdownbutton({
           uuid: this.options.uuid,
           editable: this.options.editable,
@@ -769,7 +769,7 @@
         buttonset = jQuery("<span class=\"" + widget.widgetName + "\"></span>");
         buttonize = function(format) {
           var buttonHolder;
-          buttonHolder = jQuery('<span></span>');
+          buttonHolder = jQuery('<button>');
           buttonHolder.hallobutton({
             label: format,
             editable: _this.options.editable,
@@ -813,7 +813,7 @@
         command = (ie ? "FormatBlock" : "formatBlock");
         buttonize = function(format) {
           var buttonHolder;
-          buttonHolder = jQuery('<span></span>');
+          buttonHolder = jQuery('<button>');
           buttonHolder.hallobutton({
             label: format,
             editable: _this.options.editable,
@@ -901,7 +901,7 @@
         this.options.dialog = jQuery("<div>").attr('id', selector);
         $buttonset = jQuery("<span>").addClass(widget.widgetName);
         id = "" + this.options.uuid + "-htmledit";
-        $buttonHolder = jQuery('<span>');
+        $buttonHolder = jQuery('<button>');
         $buttonHolder.hallobutton({
           label: this.texts.title,
           icon: 'glyphicon-list-alt',
@@ -939,7 +939,7 @@
         this.options.editable.keepActivated(true);
         this.options.dialog.dialog("open");
         this.options.dialog.on('dialogclose', function() {
-          jQuery('label', _this.button).removeClass('ui-state-active');
+          jQuery('label', _this.button).removeClass('active');
           _this.options.editable.element.focus();
           return _this.options.editable.keepActivated(false);
         });
@@ -1105,7 +1105,7 @@
         this.options.editable.keepActivated(true);
         this.options.dialog.dialog("open");
         return this.options.dialog.on('dialogclose', function() {
-          jQuery('label', _this.button).removeClass('ui-state-active');
+          jQuery('label', _this.button).removeClass('active');
           _this.options.editable.element.focus();
           return _this.options.editable.keepActivated(false);
         });
@@ -1973,7 +1973,7 @@
         this._load_dialog_image_properties_ui();
         this.options.dialog.on('dialogclose', function() {
           var scrollbar_pos;
-          jQuery('label', _this.button).removeClass('ui-state-active');
+          jQuery('label', _this.button).removeClass('active');
           scrollbar_pos = jQuery(document).scrollTop();
           _this.options.editable.element.focus();
           jQuery(document).scrollTop(scrollbar_pos);
@@ -2187,7 +2187,8 @@
       _create: function() {
         var _this = this;
         return this.element.on('halloenabled', function() {
-          return _this.buildIndicator();
+          _this.toolbar = _this.populateToolbar();
+          return _this.toolbar.buildIndicator.call(_this);
         });
       },
       populateToolbar: function() {
@@ -2198,8 +2199,8 @@
             editButton.addClass(this.options.className);
             editButton.hide();
             this.element.before(editButton);
-            this.bindIndicator(editButton);
-            return this.setIndicatorPosition(editButton);
+            this.toolbar.bindIndicator.call(this, editButton);
+            return this.toolbar.setIndicatorPosition.call(this, editButton);
           },
           bindIndicator: function(indicator) {
             var _this = this;
@@ -2360,7 +2361,7 @@
         buttonize = function(type) {
           var button, buttonHolder, id;
           id = "" + _this.options.uuid + "-" + type;
-          buttonHolder = jQuery('<span></span>');
+          buttonHolder = jQuery('<button>');
           buttonHolder.hallobutton({
             label: 'Link',
             icon: 'glyphicon-link',
@@ -2389,7 +2390,7 @@
             dialog.dialog('open');
             dialog.on('dialogclose', function() {
               widget.options.editable.restoreSelection(widget.lastSelection);
-              jQuery('label', buttonHolder).removeClass('ui-state-active');
+              jQuery('label', buttonHolder).removeClass('active');
               widget.options.editable.element.focus();
               return widget.options.editable.keepActivated(false);
             });
@@ -2404,10 +2405,10 @@
               nodeName = start.parent().prop('nodeName');
             }
             if (nodeName && nodeName.toUpperCase() === "A") {
-              jQuery('label', button).addClass('ui-state-active');
+              jQuery('label', button).addClass('active');
               return;
             }
-            return jQuery('label', button).removeClass('ui-state-active');
+            return jQuery('label', button).removeClass('active');
           });
         };
         if (this.options.link) {
@@ -2443,7 +2444,7 @@
         buttonset = jQuery("<span class=\"" + this.widgetName + "\"></span>");
         buttonize = function(type, label, icon) {
           var buttonElement;
-          buttonElement = jQuery('<span></span>');
+          buttonElement = jQuery('<button>');
           buttonElement.hallobutton({
             uuid: _this.options.uuid,
             editable: _this.options.editable,
@@ -2585,7 +2586,7 @@
         buttonset = jQuery("<span class=\"" + this.widgetName + "\"></span>");
         buttonize = function(cmd, label) {
           var buttonElement;
-          buttonElement = jQuery('<span></span>');
+          buttonElement = jQuery('<button>');
           buttonElement.hallobutton({
             uuid: _this.options.uuid,
             editable: _this.options.editable,
@@ -3009,7 +3010,6 @@
 (function() {
   (function(jQuery) {
     jQuery.widget('IKS.hallobutton', {
-      button: null,
       isChecked: false,
       options: {
         uuid: '',
@@ -3022,42 +3022,42 @@
         cssClass: null
       },
       _create: function() {
-        var hoverclass, id, opts, _base,
+        var classes, command, hoverclass, id, _base,
           _this = this;
         if ((_base = this.options).icon == null) {
           _base.icon = "glyphicon-" + (this.options.label.toLowerCase());
         }
         id = "" + this.options.uuid + "-" + this.options.label;
-        opts = this.options;
-        this.button = this._createButton(id, opts.command, opts.label, opts.icon);
-        this.element.append(this.button);
+        command = this.options.command;
+        classes = ['btn', 'btn-default', "" + command + "_button"];
+        this.icon = this._createIcon(this.options.icon);
+        this.element.append(this.icon);
+        this.element.addClass(classes.join(' '));
         if (this.options.cssClass) {
-          this.button.addClass(this.options.cssClass);
+          this.element.addClass(this.options.cssClass);
         }
         if (this.options.editable.options.touchScreen) {
-          this.button.addClass('btn-large');
+          this.element.addClass('btn-large');
         }
-        this.button.data('hallo-command', this.options.command);
+        this.element.attr('id', id);
+        this.element.attr('title', this.options.label);
+        this.element.data('hallo-command', this.options.command);
         if (this.options.commandValue) {
-          this.button.data('hallo-command-value', this.options.commandValue);
+          this.element.data('hallo-command-value', this.options.commandValue);
         }
         hoverclass = 'ui-state-hover';
-        this.button.on('mouseenter', function(event) {
+        this.element.on('mouseenter', function(event) {
           if (_this.isEnabled()) {
-            return _this.button.addClass(hoverclass);
+            return _this.element.addClass(hoverclass);
           }
         });
-        return this.button.on('mouseleave', function(event) {
-          return _this.button.removeClass(hoverclass);
+        return this.element.on('mouseleave', function(event) {
+          return _this.element.removeClass(hoverclass);
         });
       },
       _init: function() {
         var editableElement, events, queryState,
           _this = this;
-        if (!this.button) {
-          this.button = this._prepareButton();
-        }
-        this.element.append(this.button);
         if (this.options.queryState === true) {
           queryState = function(event) {
             var compared, e, value;
@@ -3080,7 +3080,7 @@
           queryState = this.options.queryState;
         }
         if (this.options.command) {
-          this.button.on('click', function(event) {
+          this.element.on('click', function(event) {
             if (_this.options.commandValue) {
               _this.options.editable.execute(_this.options.command, _this.options.commandValue);
             } else {
@@ -3106,51 +3106,33 @@
         });
       },
       enable: function() {
-        return this.button.removeAttr('disabled');
+        return this.element.removeAttr('disabled');
       },
       disable: function() {
-        return this.button.attr('disabled', 'true');
+        return this.element.attr('disabled', 'true');
       },
       isEnabled: function() {
-        return this.button.attr('disabled') !== 'true';
+        return this.element.attr('disabled') !== 'true';
       },
       refresh: function() {
         if (this.isChecked) {
-          return this.button.addClass('ui-state-active');
+          return this.element.addClass('active');
         } else {
-          return this.button.removeClass('ui-state-active');
+          return this.element.removeClass('active');
         }
       },
       checked: function(checked) {
         this.isChecked = checked;
         return this.refresh();
       },
-      _createButton: function(id, command, label, icon) {
-        var classes;
-        classes = ['ui-button', 'ui-widget', 'ui-state-default', 'ui-corner-all', 'ui-button-text-only', "" + command + "_button"];
-        return jQuery("<button id=\"" + id + "\"              class=\"" + (classes.join(' ')) + "\" title=\"" + label + "\">                <span class=\"ui-button-text\">                  <i class=\"glyphicon " + icon + "\"></i>                </span>              </button>");
+      _createIcon: function(icon) {
+        return jQuery("<i class=\"glyphicon " + icon + "\">");
       }
     });
     return jQuery.widget('IKS.hallobuttonset', {
       buttons: null,
       _create: function() {
-        return this.element.addClass('ui-buttonset');
-      },
-      _init: function() {
-        return this.refresh();
-      },
-      refresh: function() {
-        var rtl;
-        rtl = this.element.css('direction') === 'rtl';
-        this.buttons = this.element.find('.ui-button');
-        this.buttons.removeClass('ui-corner-all ui-corner-left ui-corner-right');
-        if (rtl) {
-          this.buttons.filter(':first').addClass('ui-corner-right');
-          return this.buttons.filter(':last').addClass('ui-corner-left');
-        } else {
-          this.buttons.filter(':first').addClass('ui-corner-left');
-          return this.buttons.filter(':last').addClass('ui-corner-right');
-        }
+        return this.element.addClass('btn-group');
       }
     });
   })(jQuery);
@@ -3174,16 +3156,13 @@
         return (_base = this.options).icon != null ? (_base = this.options).icon : _base.icon = "glyphicon-" + (this.options.label.toLowerCase());
       },
       _init: function() {
-        var target,
+        var classes, id, target,
           _this = this;
         target = jQuery(this.options.target);
         target.css('position', 'absolute');
         target.addClass('dropdown-menu');
         target.hide();
-        if (!this.button) {
-          this.button = this._prepareButton();
-        }
-        this.button.on('click', function() {
+        this.element.on('click', function() {
           if (target.hasClass('open')) {
             _this._hideTarget();
             return;
@@ -3196,7 +3175,18 @@
         this.options.editable.element.on('hallodeactivated', function() {
           return _this._hideTarget();
         });
-        return this.element.append(this.button);
+        this.icon = this._createIcon(this.options.icon);
+        this.element.append(this.icon);
+        classes = ['btn', 'btn-default', 'dropdown-toggle'];
+        id = "" + this.options.uuid + "-" + this.options.label;
+        this.element.attr('id', id);
+        this.element.addClass(classes.join(' '));
+        if (this.options.cssClass) {
+          this.element.addClass(this.options.cssClass);
+        }
+        if (this.options.editable.options.touchScreen) {
+          return this.element.addClass('btn-large');
+        }
       },
       _showTarget: function() {
         var target;
@@ -3214,20 +3204,13 @@
       _updateTargetPosition: function() {
         var left, target, top, _ref;
         target = jQuery(this.options.target);
-        _ref = this.button.position(), top = _ref.top, left = _ref.left;
-        top += this.button.outerHeight();
+        _ref = this.element.position(), top = _ref.top, left = _ref.left;
+        top += this.element.outerHeight();
         target.css('top', top);
         return target.css('left', left - 20);
       },
-      _prepareButton: function() {
-        var buttonEl, classes, id;
-        id = "" + this.options.uuid + "-" + this.options.label;
-        classes = ['ui-button', 'ui-widget', 'ui-state-default', 'ui-corner-all', 'ui-button-text-only'];
-        buttonEl = jQuery("<button id=\"" + id + "\"             class=\"" + (classes.join(' ')) + "\" title=\"" + this.options.label + "\">             <span class=\"ui-button-text\"><i class=\"glyphicon " + this.options.icon + "\"></i></span>             </button>");
-        if (this.options.cssClass) {
-          buttonEl.addClass(this.options.cssClass);
-        }
-        return buttonEl;
+      _createIcon: function(icon) {
+        return jQuery("<i class=\"glyphicon " + icon + "\"></i> <span class='caret'></span>");
       }
     });
   })(jQuery);

@@ -22,9 +22,8 @@
       target.addClass 'dropdown-menu'
 
       target.hide()
-      @button = @_prepareButton() unless @button
 
-      @button.on 'click', =>
+      @element.on 'click', =>
         if target.hasClass 'open'
           @_hideTarget()
           return
@@ -36,7 +35,20 @@
       @options.editable.element.on 'hallodeactivated', =>
         @_hideTarget()
 
-      @element.append @button
+      @icon = @_createIcon @options.icon
+      @element.append @icon
+      classes = [
+        'btn'
+        'btn-default'
+        'dropdown-toggle'
+      ]
+
+      id = "#{@options.uuid}-#{@options.label}"
+      @element.attr 'id', id
+
+      @element.addClass classes.join(' ')
+      @element.addClass @options.cssClass if @options.cssClass
+      @element.addClass 'btn-large' if @options.editable.options.touchScreen
 
     _showTarget: ->
       target = jQuery @options.target
@@ -51,24 +63,11 @@
 
     _updateTargetPosition: ->
       target = jQuery @options.target
-      {top, left} = @button.position()
-      top += @button.outerHeight()
+      {top, left} = @element.position()
+      top += @element.outerHeight()
       target.css 'top', top
       target.css 'left', left - 20
 
-    _prepareButton: ->
-      id = "#{@options.uuid}-#{@options.label}"
-      classes = [
-        'ui-button'
-        'ui-widget'
-        'ui-state-default'
-        'ui-corner-all'
-        'ui-button-text-only'
-      ]
-      buttonEl = jQuery "<button id=\"#{id}\"
-             class=\"#{classes.join(' ')}\" title=\"#{@options.label}\">
-             <span class=\"ui-button-text\"><i class=\"glyphicon #{@options.icon}\"></i></span>
-             </button>"
-      buttonEl.addClass @options.cssClass if @options.cssClass
-      buttonEl
+    _createIcon: (icon) ->
+      jQuery "<i class=\"glyphicon #{icon}\"></i> <span class='caret'></span>"
 )(jQuery)

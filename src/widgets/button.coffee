@@ -3,7 +3,6 @@
 #     Hallo may be freely distributed under the MIT license
 ((jQuery) ->
   jQuery.widget 'IKS.hallobutton',
-    button: null
     isChecked: false
 
     options:
@@ -22,26 +21,34 @@
       @options.icon ?= "glyphicon-#{@options.label.toLowerCase()}"
 
       id = "#{@options.uuid}-#{@options.label}"
-      opts = @options
-      @button = @_createButton id, opts.command, opts.label, opts.icon
-      @element.append @button
-      @button.addClass @options.cssClass if @options.cssClass
-      @button.addClass 'btn-large' if @options.editable.options.touchScreen
-      @button.data 'hallo-command', @options.command
+      command = @options.command
+      classes = [
+        'btn'
+        'btn-default'
+        "#{command}_button"
+      ]
+
+      @icon = @_createIcon @options.icon
+      @element.append @icon
+
+      @element.addClass classes.join(' ')
+      @element.addClass @options.cssClass if @options.cssClass
+      @element.addClass 'btn-large' if @options.editable.options.touchScreen
+
+      @element.attr 'id', id
+      @element.attr 'title', @options.label
+      @element.data 'hallo-command', @options.command
       if @options.commandValue
-        @button.data 'hallo-command-value', @options.commandValue
+        @element.data 'hallo-command-value', @options.commandValue
 
       hoverclass = 'ui-state-hover'
-      @button.on 'mouseenter', (event) =>
+      @element.on 'mouseenter', (event) =>
         if @isEnabled()
-          @button.addClass hoverclass
-      @button.on 'mouseleave', (event) =>
-        @button.removeClass hoverclass
+          @element.addClass hoverclass
+      @element.on 'mouseleave', (event) =>
+        @element.removeClass hoverclass
 
     _init: ->
-      @button = @_prepareButton() unless @button
-      @element.append @button
-
       if @options.queryState is true
         queryState = (event) =>
           return unless @options.command
@@ -58,7 +65,7 @@
         queryState = @options.queryState
 
       if @options.command
-        @button.on 'click', (event) =>
+        @element.on 'click', (event) =>
           if @options.commandValue
             @options.editable.execute @options.command, @options.commandValue
           else
@@ -78,57 +85,30 @@
         editableElement.off events, queryState
 
     enable: ->
-      @button.removeAttr 'disabled'
+      @element.removeAttr 'disabled'
 
     disable: ->
-      @button.attr 'disabled', 'true'
+      @element.attr 'disabled', 'true'
 
     isEnabled: ->
-      return @button.attr('disabled') != 'true'
+      return @element.attr('disabled') != 'true'
 
     refresh: ->
       if @isChecked
-        @button.addClass 'ui-state-active'
+        @element.addClass 'active'
       else
-        @button.removeClass 'ui-state-active'
+        @element.removeClass 'active'
 
     checked: (checked) ->
       @isChecked = checked
       @refresh()
 
-    _createButton: (id, command, label, icon) ->
-      classes = [
-        'ui-button'
-        'ui-widget'
-        'ui-state-default'
-        'ui-corner-all'
-        'ui-button-text-only'
-        "#{command}_button"
-      ]
-      jQuery "<button id=\"#{id}\"
-              class=\"#{classes.join(' ')}\" title=\"#{label}\">
-                <span class=\"ui-button-text\">
-                  <i class=\"glyphicon #{icon}\"></i>
-                </span>
-              </button>"
+    _createIcon: (icon) ->
+      jQuery "<i class=\"glyphicon #{icon}\">"
 
 
   jQuery.widget 'IKS.hallobuttonset',
     buttons: null
     _create: ->
-      @element.addClass 'ui-buttonset'
-
-    _init: ->
-      @refresh()
-
-    refresh: ->
-      rtl = @element.css('direction') == 'rtl'
-      @buttons = @element.find '.ui-button'
-      @buttons.removeClass 'ui-corner-all ui-corner-left ui-corner-right'
-      if rtl
-        @buttons.filter(':first').addClass 'ui-corner-right'
-        @buttons.filter(':last').addClass 'ui-corner-left'
-      else
-        @buttons.filter(':first').addClass 'ui-corner-left'
-        @buttons.filter(':last').addClass 'ui-corner-right'
+      @element.addClass 'btn-group'
 )(jQuery)

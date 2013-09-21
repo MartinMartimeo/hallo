@@ -16,7 +16,7 @@
       command = (if ie then "FormatBlock" else "formatBlock")
 
       buttonize = (format) =>
-        buttonHolder = jQuery '<span></span>'
+        buttonHolder = jQuery '<button>'
         buttonHolder.hallobutton
           label: format
           editable: @options.editable

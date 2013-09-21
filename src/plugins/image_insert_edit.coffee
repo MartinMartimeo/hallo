@@ -155,7 +155,7 @@
       @_load_dialog_image_properties_ui()
 
       @options.dialog.on 'dialogclose', =>
-        jQuery('label', @button).removeClass 'ui-state-active'
+        jQuery('label', @button).removeClass 'active'
         scrollbar_pos = jQuery(document).scrollTop()
         @options.editable.element.focus()
         jQuery(document).scrollTop(scrollbar_pos) # restore scrollbar pos

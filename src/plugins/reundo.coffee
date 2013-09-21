@@ -12,7 +12,7 @@
     populateToolbar: (toolbar) ->
       buttonset = jQuery "<span class=\"#{@widgetName}\"></span>"
       buttonize = (cmd, label) =>
-        buttonElement = jQuery '<span></span>'
+        buttonElement = jQuery '<button>'
         buttonElement.hallobutton
           uuid: @options.uuid
           editable: @options.editable

@@ -74,7 +74,7 @@
       contentArea
 
     _prepareButton: (target) ->
-      buttonElement = jQuery '<span></span>'
+      buttonElement = jQuery '<button>'
       buttonElement.hallodropdownbutton
         uuid: @options.uuid
         editable: @options.editable

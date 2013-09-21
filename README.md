@@ -24,7 +24,6 @@ You need jQuery, jQuery UI (1.10+), and [Rangy](https://code.google.com/p/rangy/
 The editor toolbar is using jQuery UI theming, so you'll probably also want to [grab a theme](http://jqueryui.com/themeroller/) that fits your needs. Toolbar pluggins use icons from [Glyphicon](http://glyphicons.com/) via the boostrap glyphicon classes. To style the toolbar as it appears in the demo, you'll also want to add some CSS (like background and border) to the class `hallotoolbar`.
 
 ```html
-<link rel="stylesheet" href="/path/to/your/jquery-ui.css">
 <link rel="stylesheet" href="/path/to/your/bootstrap.css">
 ```
 

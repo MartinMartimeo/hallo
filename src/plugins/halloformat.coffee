@@ -18,7 +18,7 @@
       buttonset = jQuery "<span class=\"#{widget.widgetName}\"></span>"
 
       buttonize = (format) =>
-        buttonHolder = jQuery '<span></span>'
+        buttonHolder = jQuery '<button>'
         buttonHolder.hallobutton
           label: format
           editable: @options.editable

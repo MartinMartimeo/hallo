@@ -74,7 +74,7 @@
       buttonset = jQuery "<span class=\"#{widget.widgetName}\"></span>"
       buttonize = (type) =>
         id = "#{@options.uuid}-#{type}"
-        buttonHolder = jQuery '<span></span>'
+        buttonHolder = jQuery '<button>'
         buttonHolder.hallobutton
           label: 'Link'
           icon: 'glyphicon-link'
@@ -103,7 +103,7 @@
 
           dialog.on 'dialogclose', ->
             widget.options.editable.restoreSelection widget.lastSelection
-            jQuery('label', buttonHolder).removeClass 'ui-state-active'
+            jQuery('label', buttonHolder).removeClass 'active'
             do widget.options.editable.element.focus
             widget.options.editable.keepActivated false
           return false
@@ -115,9 +115,9 @@
           else
             nodeName = start.parent().prop('nodeName')
           if nodeName and nodeName.toUpperCase() is "A"
-            jQuery('label', button).addClass 'ui-state-active'
+            jQuery('label', button).addClass 'active'
             return
-          jQuery('label', button).removeClass 'ui-state-active'
+          jQuery('label', button).removeClass 'active'
 
       if (@options.link)
         buttonize "A"

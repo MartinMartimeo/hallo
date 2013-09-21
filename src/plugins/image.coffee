@@ -185,7 +185,7 @@
       @options.dialog.dialog("open")
 
       @options.dialog.on 'dialogclose', =>
-        jQuery('label', @button).removeClass 'ui-state-active'
+        jQuery('label', @button).removeClass 'active'
         do @options.editable.element.focus
         @options.editable.keepActivated false
 

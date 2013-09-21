@@ -38,7 +38,7 @@
       editableElement.on 'hallodisabled', turnOffAnnotate
 
     populateToolbar: (toolbar) ->
-      buttonHolder = jQuery "<span class=\"#{@widgetName}\"></span>"
+      buttonHolder = jQuery "<button class=\"#{@widgetName}\">"
       @button = buttonHolder.hallobutton
         label: 'Annotate'
         icon: 'glyphicon-tags'

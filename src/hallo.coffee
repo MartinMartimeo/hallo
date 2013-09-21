@@ -302,7 +302,7 @@ http://hallojs.org
       "#{S4()}#{S4()}-#{S4()}-#{S4()}-#{S4()}-#{S4()}#{S4()}#{S4()}"
 
     _prepareToolbar: ->
-      @toolbar = jQuery('<div class="hallotoolbar"></div>').hide()
+      @toolbar = jQuery('<div class="hallotoolbar btn-toolbar"></div>').hide()
       @toolbar.addClass @options.toolbarCssClass if @options.toolbarCssClass
 
       defaults =
