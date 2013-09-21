@@ -11,6 +11,8 @@ The widget has been written as a simple and liberally licensed editor. It doesn'
 
 Read the [introductory blog post](http://bergie.iki.fi/blog/hallo-editor/) for more information.
 
+This version is optimized for usage with bootstrap v3 and does not support the old layouting with font-awesome and jquery-ui themes.
+
 ## Using the editor
 
 You need jQuery, jQuery UI (1.10+), and [Rangy](https://code.google.com/p/rangy/) loaded. An easy way to do this is to use Google's JS service:
@@ -21,7 +23,7 @@ You need jQuery, jQuery UI (1.10+), and [Rangy](https://code.google.com/p/rangy/
 <script src="http://rangy.googlecode.com/svn/trunk/currentrelease/rangy-core.js"></script>
 ```
 
-The editor toolbar is using jQuery UI theming, so you'll probably also want to [grab a theme](http://jqueryui.com/themeroller/) that fits your needs. Toolbar pluggins use icons from [Glyphicon](http://glyphicons.com/) via the boostrap glyphicon classes. To style the toolbar as it appears in the demo, you'll also want to add some CSS (like background and border) to the class `hallotoolbar`.
+Toolbar pluggins use icons from [Glyphicon](http://glyphicons.com/) and are styled via bootstrap classes. To style the toolbar as it appears in the demo, you'll also want to add some CSS (like background and border) to the class `hallotoolbar`.
 
 ```html
 <link rel="stylesheet" href="/path/to/your/bootstrap.css">

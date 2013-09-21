@@ -5,6 +5,7 @@ Hallo Editor ChangeLog
 
 * Remove Font Awesome and use glyphicon halflings (depends on bootstrap v3)
 * Allow to specify which justify buttons are shown
+* Styling with jquery-ui.css is dropped and done by bootstrap v3 style classes.
 
 ## 1.0.4 (September 10th 2013)
 
