@@ -79,7 +79,8 @@
         uuid: @options.uuid
         editable: @options.editable
         label: 'block'
-        icon: 'glyphicon-text-height'
+        icon: 'glyphicon-header'
         target: target
         cssClass: @options.buttonCssClass
-      buttonElement)(jQuery)
+      buttonElement
+)(jQuery)
