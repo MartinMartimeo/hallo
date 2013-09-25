@@ -2652,9 +2652,11 @@
             url: (_ref = typeof (_base = widget.options).target === "function" ? _base.target(widget.options.editable) : void 0) != null ? _ref : widget.options.target,
             type: widget.options.method,
             data: widget.options.editable.element.html(),
-            success: function() {
+            success: function(html) {
               widget.options.editable.element.removeClass('isModified');
-              return button.find(".glyphicon").removeClass(widget.options.icon[0]).addClass(widget.options.icon[1]);
+              button.find(".glyphicon").removeClass(widget.options.icon[0]).addClass(widget.options.icon[1]);
+              widget.options.editable.element.html(html);
+              return widget.options.editable.element.trigger('change');
             }
           });
         });

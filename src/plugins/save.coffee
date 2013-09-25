@@ -44,9 +44,13 @@
           url: widget.options.target?(widget.options.editable) ? widget.options.target
           type: widget.options.method,
           data: widget.options.editable.element.html()
-          success: ->
+          success: (html) ->
             widget.options.editable.element.removeClass 'isModified'
             button.find(".glyphicon").removeClass(widget.options.icon[0]).addClass(widget.options.icon[1])
+
+            widget.options.editable.element.html html
+            widget.options.editable.element.trigger('change')
+
 
 
       buttonset.hallobuttonset()
