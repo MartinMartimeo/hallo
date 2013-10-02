@@ -758,7 +758,9 @@
           bold: true,
           italic: true,
           strikeThrough: false,
-          underline: false
+          underline: false,
+          superscript: false,
+          subscript: false
         },
         buttonCssClass: null
       },

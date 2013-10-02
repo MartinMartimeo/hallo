@@ -73,7 +73,7 @@ Hallo provides some events that are useful for integration. You can use [jQuery 
 
 ## Plugins
 
-* halloformat - Adds Bold, Italic, StrikeThrough and Underline support to the toolbar. (Enable/Disable with options: "formattings": {"bold": true, "italic": true, "strikethrough": true, "underline": false})
+* halloformat - Adds Bold, Italic, StrikeThrough, Underline, Superscript and Subscript support to the toolbar. (Enable/Disable with options: "formattings": {"bold": true, "italic": true, "strikethrough": true, "underline": false, "superscript": false, "subscript": false})
 * halloheadings - Adds support for H1, H2, H3. You can pass a headings option key to specify what is going to be displayed (e.g. "formatBlocks":["p", "h2","h3"])
 * hallojustify - Adds align left, center, right support
 * hallolists - Adds support for ordered and unordered lists (Pick with options: "lists": {"ordered": false, "unordered": true})
